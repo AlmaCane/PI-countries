@@ -1,4 +1,5 @@
-import { createActivity, deleteActivity } from "./actionsCreate";
-
-export const CREATE_ACTIVITY = createActivity;
-export const DELETE_ACTIVITY = deleteActivity;
+export const CREATE_ACTIVITY = "CREATE_ACTIVITY";
+export const DELETE_ACTIVITY = "DELETE_ACTIVITY";
+export const GET_ALL_COUNTRIES = "GET_ALL_COUNTRIES";
+export const GET_COUNTRY_BY_NAME = "GET_COUNTRY_BY_NAME";
+export const GET_COUNTRY_BY_ID = "GET_COUNTRY_BY_ID";
