@@ -1,30 +1,21 @@
-const {createActivities, getActivities} = require("../controllers/activityController")
+const {postNewActivity}=require('../controllers/postNewActivity')
+const {getAllActivities}=require('../controllers/getAllActivities')
 
-const postActivities = async (req, res) => {
-    const { nombre, dificultad, duracion, estacion, countries } = req.body;
+const postActivity= async (req,res)=>{
+    const {nombre,dificultad,duracion,temporada,countryId}=req.body;
+
     try {
-      const activity = await createActivities(
-        nombre, dificultad, duracion, estacion, countries
-      );
-      res.status(201).json(activity);
+        const response= await postNewActivity(nombre,dificultad,duracion,temporada,countryId);
+        res.status(200).json(response);
     } catch (error) {
-      res.status(400).json(error.message);
+        res.status(400).json({error:error.message});
     }
-  };
 
-const getAllActivities = async (req, res)=>{
-
-    try {
-        const activities = await getActivities();
-        res.status(200).json(activities);
-      }
-  
-     catch (error) {
-        return res.status(500).send(err.message)
-     }
 }
 
-  module.exports={
-postActivities,
-getAllActivities
+const getActivities= async (req,res)=>{
+    const response=await getAllActivities();
+    res.status(200).json(response);
 }
+
+module.exports={postActivity,getActivities};
