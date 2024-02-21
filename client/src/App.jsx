@@ -1,7 +1,7 @@
 import {Route, Routes, useLocation} from "react-router-dom"
-import LandingPage from "./components/landingPage/landingPage"
+import LandingPage from "../src/views/landingPage/LandingPage"
 import './App.css'
-import HomePage from "./components/homePage/HomePage"
+import HomePage from "./views/homePage/HomePage";
 import {useState} from "react"
 import axios from "axios";
 import Form from "./components/form/form"
