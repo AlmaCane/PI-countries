@@ -1,9 +1,13 @@
 import { useDispatch, useSelector } from "react-redux";
-import { ordenado, filtrado } from "../../redux/actionsCreate";
+import { ordenado, filtrado, getAllCountries } from "../../redux/actionsCreate";
 import { useState } from "react";
 
 export default function FiltradoBar() {
   const countries = useSelector((state) => state.countries);
+  const mostrarTodos = ()=>{
+  dispatch(getAllCountries())
+  }
+
   const dispatch = useDispatch();
   const handleOrder = (e) => {
     dispatch(ordenado(e.target.value));
@@ -13,6 +17,7 @@ export default function FiltradoBar() {
   };
   return (
     <div>
+
       <select onChange={(e) => handleOrder(e)}>
         <option value="" disabled >Ordenar</option>
 
@@ -43,6 +48,7 @@ export default function FiltradoBar() {
   
       </select>
 
+      <button onClick={mostrarTodos}>Mostrar todos</button>
     </div>
   );
 }
