@@ -1,25 +1,19 @@
 import { useLocation } from "react-router-dom"; // Usa useLocation en lugar de useNavigate
 import Card from "../card/Card";
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
-import { getAllCountries } from "../../redux/actionsCreate";
 import "./Cards.css"
 
-export default function Cards() {
-  const dispatch = useDispatch();
-  const countries = useSelector((state) => state.countries);
+export default function Cards({countriesToShow,prevPage,nextPage,pagina}) {
   const { pathname } = useLocation(); // Usa useLocation para obtener la ruta actual
 
-  useEffect(() => {
-    dispatch(getAllCountries());
-  }, [dispatch]);
 
   if (pathname === "/home") {
     return (
       <div className="cartas">
-        {countries.map((pais) => (
-          <Card
-            key={pais.id}
+      <button onClick={prevPage}>Anterior</button>
+      <button onClick={nextPage}>Siguiente</button>
+        {countriesToShow.map((pais) => (
+          <Card                          
+          key={pais.id}
             id={pais.id}
             nombre={pais.nombre} 
             area={pais.area}
@@ -30,6 +24,9 @@ export default function Cards() {
             poblacion={pais.poblacion}
           />
         ))}
+              <button onClick={prevPage}>Anterior</button>
+      <button onClick={nextPage}>Siguiente</button>
+      <h4 className='paginaStyle'>Página: {pagina}</h4> 
       </div>
     );
   } else {
