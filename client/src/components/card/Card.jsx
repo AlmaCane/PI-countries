@@ -1,8 +1,9 @@
 import { Link } from "react-router-dom";
+import "./Card.css"
 
 export default function Card({ id, nombre, continente, capital, subregion, area, poblacion, imagen }) {
   return (
-    <div>
+    <div className="card">
       <div><img src={imagen} alt={nombre} id="bandera" /></div>
       <div>{id}</div>
       <Link to={`/detail/${id}`}>
@@ -11,8 +12,8 @@ export default function Card({ id, nombre, continente, capital, subregion, area,
       <div>{continente}</div>
       <div>{capital}</div>
       <div>{subregion}</div>
-      <div>{area}</div>
-      <div>{poblacion}</div>
+      <div>Area:{area}</div>
+      <div>Poblacion:{poblacion}</div>
     </div>
   );
 }

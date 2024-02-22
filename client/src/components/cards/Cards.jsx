@@ -3,6 +3,7 @@ import Card from "../card/Card";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getAllCountries } from "../../redux/actionsCreate";
+import "./Cards.css"
 
 export default function Cards() {
   const dispatch = useDispatch();
@@ -13,14 +14,14 @@ export default function Cards() {
     dispatch(getAllCountries());
   }, [dispatch]);
 
-  if (pathname === "/") {
+  if (pathname === "/home") {
     return (
-      <div>
+      <div className="cartas">
         {countries.map((pais) => (
           <Card
             key={pais.id}
             id={pais.id}
-            nombre={pais.nombre} // Corregir el nombre de la propiedad de pais
+            nombre={pais.nombre} 
             area={pais.area}
             subregion={pais.subregion}
             continente={pais.continente}
@@ -32,6 +33,6 @@ export default function Cards() {
       </div>
     );
   } else {
-    return null; // Devuelve null si la ruta no coincide con "/"
+    return null; 
   }
 }

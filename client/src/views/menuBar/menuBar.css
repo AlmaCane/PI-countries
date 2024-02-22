@@ -1,4 +1,8 @@
 #imagen{
-width: 20px;
-height: 20px;
+    width: 20px; /* Ancho del ícono */
+    height: 20px; /* Altura del ícono */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    cursor: pointer;
 }

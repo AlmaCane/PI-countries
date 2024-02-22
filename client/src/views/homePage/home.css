@@ -1,6 +1,7 @@
-.container{
+body{
     background-color: antiquewhite;
+    position: relative;
     }
-  .title{
+  h1{
     color: rgb(172, 9, 9);
     }

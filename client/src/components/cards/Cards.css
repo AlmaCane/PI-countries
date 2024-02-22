@@ -1,0 +1,13 @@
+.cartas {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Define el número mínimo y máximo de columnas, ajustando automáticamente el tamaño */
+    gap: 20px; /* Espacio entre las cartas */
+  }
+  
+  /* Ajusta el número de columnas en diferentes tamaños de pantalla */
+  @media screen and (max-width: 700px) {
+    .cartas {
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Define el número mínimo y máximo de columnas para pantallas más pequeñas */
+    }
+  }
+  

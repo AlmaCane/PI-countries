@@ -1,5 +1,13 @@
 import axios from "axios";
-import { CREATE_ACTIVITY, DELETE_ACTIVITY, GET_ALL_COUNTRIES, GET_COUNTRY_BY_ID, GET_COUNTRY_BY_NAME } from "./actions";
+import {
+  CREATE_ACTIVITY,
+  DELETE_ACTIVITY,
+  GET_ALL_COUNTRIES,
+  GET_COUNTRY_BY_ID,
+  GET_COUNTRY_BY_NAME,
+  FILTER,
+  ORDER,
+} from "./actions";
 
 const endpoint = "http://localhost:3001/activities";
 
@@ -33,9 +41,9 @@ export const deleteActivity = (nombre) => async (dispatch) => {
   }
 };
 
-
 export const getAllCountries = () => {
-  return async (dispatch) => { // Envuelve el bloque de código en una función asíncrona que devuelve una función
+  return async (dispatch) => {
+    // Envuelve el bloque de código en una función asíncrona que devuelve una función
     const endpoint = "http://localhost:3001/countries";
     try {
       const { data } = await axios.get(endpoint); // Utiliza axios.get() para realizar la solicitud GET
@@ -43,38 +51,46 @@ export const getAllCountries = () => {
         type: GET_ALL_COUNTRIES,
         payload: data,
       });
-    } catch (err) {
-      console.log(err.message);
-    }
+    } catch (error) {
+      dispatch({
+        type: "ERROR",
+        payload: error.message,
+      });    }
   };
 };
 
 export const getCountryByName = (nombre) => {
-try {
-    async(dispatch)=>{
-        const {data} =await axios.get(`http://localhost:3001/countries/?nombre=${nombre}`);
-        return dispatch({
+  return async (dispatch) => {
+    try {
+      const { data } = await axios.get(
+        `http://localhost:3001/countries/?nombre=${nombre}`
+      );
+      dispatch({
         type: GET_COUNTRY_BY_NAME,
-        payload: data
-        })
-    
+        payload: data,
+      });
+    } catch (error) {
+      dispatch({
+        type: "ERROR",
+        payload: error.message,
+      });
     }
-} catch (error) {
-console.log(error.message);
-}
-}
+  };
+};
 
 export const getCountryById = (id) => {
-try {
-    async(dispatch)=>{
-        const {data} = await axios.get(`http://localhost:3001/countries/${id}`);
-        return dispatch({
+  try {
+    async (dispatch) => {
+      const { data } = await axios.get(`http://localhost:3001/countries/${id}`);
+      return dispatch({
         type: GET_COUNTRY_BY_ID,
-        payload: data
-        })
-    
-    }
-} catch (error) {
-console.log(error.message);
-}
-}
+        payload: data,
+      });
+    };
+  } catch (error) {
+    dispatch({
+      type: "ERROR",
+      payload: error.message,
+    });
+  }
+};
