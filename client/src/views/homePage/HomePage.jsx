@@ -4,6 +4,7 @@ import Cards from "../../components/cards/Cards";
 import "./home.css"
 import { useDispatch } from "react-redux";
 import { getCountryByName } from "../../redux/actionsCreate";
+import FiltradoBar from "../../components/filtradoBar/FiltradoBar";
 
 export default function HomePage() {
   const dispatch = useDispatch();
@@ -16,6 +17,7 @@ export default function HomePage() {
     <div className="home">
       <h1>Buscá el país que quieras!!</h1>
       <SearchBar onSearch={handleSearch} />
+      <FiltradoBar/>
     
       <Cards />
     </div>

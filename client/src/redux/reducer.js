@@ -4,8 +4,9 @@ import {
   GET_ALL_COUNTRIES,
   GET_COUNTRY_BY_ID,
   GET_COUNTRY_BY_NAME,
+  FILTER,
+  ORDER,
 } from "./actions";
-
 
 const initialstate = {
   activities: [],
@@ -56,6 +57,40 @@ function reducer(state = initialstate, action) {
         ...state,
         errors: action.payload,
       };
+    case ORDER:
+      const { countriesCopy } = state;
+      let sortedCountries = [...countriesCopy]; // Crear una copia del array
+
+      if (action.payload === "Alfabeticamente") {
+        sortedCountries.sort((a, b) => a.nombre.localeCompare(b.nombre));
+      } else if (action.payload === "Alfabeticamente descendente")
+        sortedCountries.sort((a, b) => b.nombre.localeCompare(a.nombre));
+      else if (action.payload === "MasPoblacion") {
+        sortedCountries.sort((a, b) => b.poblacion - a.poblacion);
+      } else if (action.payload === "MasArea") {
+        sortedCountries.sort((a, b) => b.area - a.area);
+      }
+      else if (action.payload === "MenosPoblacion") {
+        sortedCountries.sort((a, b) => a.poblacion - b.poblacion);
+      } else if (action.payload === "MenosArea") {
+        sortedCountries.sort((a, b) => a.area - b.area);
+      }
+
+      return {
+        ...state,
+        countries: sortedCountries,
+      };
+    case FILTER:
+      const filteredCountries = state.countriesCopy.filter((country) =>
+        country.continente.includes(action.payload)
+      );
+      {
+        return {
+          ...state,
+          countries: filteredCountries,
+        };
+      }
+
     default:
       return state;
   }

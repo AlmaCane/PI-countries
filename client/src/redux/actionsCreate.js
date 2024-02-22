@@ -6,7 +6,7 @@ import {
   GET_COUNTRY_BY_ID,
   GET_COUNTRY_BY_NAME,
   FILTER,
-  ORDER,
+  ORDER
 } from "./actions";
 
 const endpoint = "http://localhost:3001/activities";
@@ -94,3 +94,16 @@ export const getCountryById = (id) => {
     });
   }
 };
+
+export const filtrado =(payload)=>{
+return {
+type: FILTER,
+payload: payload
+}
+}
+export const ordenado =(orden)=>{
+return {
+type: ORDER,
+payload: orden
+}
+}
