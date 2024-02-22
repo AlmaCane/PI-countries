@@ -1,4 +1,4 @@
-const { Activity } = require("../db.js");
+const { Activity, Country } = require("../db.js");
 
 const createActivity = async (
   nombre,
@@ -11,11 +11,15 @@ const createActivity = async (
     nombre,
     dificultad,
     duracion,
-    estacion,
+    estacion
   });
+ // Obtener el país (suponiendo que ya existe en la base de datos)
+ const country = await Country.findAll({ where: { nombre: countries } });
 
-  await newActivity.setCountries(countries);
-  return newActivity;
+ // Asignar el país a la actividad
+ await newActivity.addCountries(country);
+
+ return newActivity;
 };
 
 module.exports = { createActivity };

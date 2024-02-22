@@ -30,8 +30,8 @@ modelDefiners.forEach((model) => model(sequelize));
 // Aca vendrian las relaciones
 const { Country, Activity } = sequelize.models;
 
-Activity.belongsToMany(Country, { through: "country_activity" });
-Country.belongsToMany(Activity, { through: "country_activity" });
+Activity.belongsToMany(Country, { through: "ActivityCountry" });
+Country.belongsToMany(Activity, { through: "ActivityCountry" });
 
 module.exports = {
   ...sequelize.models,
