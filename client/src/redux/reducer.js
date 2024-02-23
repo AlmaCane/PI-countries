@@ -6,6 +6,7 @@ import {
   GET_COUNTRY_BY_NAME,
   FILTER,
   ORDER,
+  GET_ALL_ACTIVITIES,
 } from "./actions";
 
 const initialstate = {
@@ -19,11 +20,19 @@ const initialstate = {
 
 function reducer(state = initialstate, action) {
   switch (action.type) {
+
+    case GET_ALL_ACTIVITIES:
+      return {
+      ...state,
+      activities: action.payload, 
+      allActivities: action.payload,
+      errors: []
+      }
     case CREATE_ACTIVITY:
       return {
         ...state,
-        activities: action.payload,
-        allactivities: action.payload,
+        activities:[...state.activities, action.payload],
+        allActivities: [...state.activities, action.payload],
         errors: [],
       };
 

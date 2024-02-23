@@ -6,7 +6,8 @@ import {
   GET_COUNTRY_BY_ID,
   GET_COUNTRY_BY_NAME,
   FILTER,
-  ORDER
+  ORDER,
+  GET_ALL_ACTIVITIES
 } from "./actions";
 
 const endpoint = "http://localhost:3001/activities";
@@ -40,6 +41,25 @@ export const deleteActivity = (nombre) => async (dispatch) => {
     });
   }
 };
+
+export const getAllActivities = () => {
+return async (dispatch) => {
+try {
+  const {data} = await axios (endpoint);
+  dispatch ({
+  type: GET_ALL_ACTIVITIES,
+  payload: data,
+  })
+
+
+} catch (error) {
+  dispatch({
+  type: "ERROR",
+  payload: error.message
+  })
+}
+}
+}
 
 export const getAllCountries = () => {
   return async (dispatch) => {
