@@ -99,20 +99,20 @@ export const getCountryByName = (nombre) => {
 };
 
 export const getCountryById = (id) => {
-  try {
-    async (dispatch) => {
+  return async (dispatch) => {
+    try {
       const { data } = await axios.get(`http://localhost:3001/countries/${id}`);
-      return dispatch({
+      dispatch({
         type: GET_COUNTRY_BY_ID,
         payload: data,
       });
-    };
-  } catch (error) {
-    dispatch({
-      type: "ERROR",
-      payload: error.message,
-    });
-  }
+    } catch (error) {
+      dispatch({
+        type: "ERROR",
+        payload: error.message,
+      });
+    }
+  };
 };
 
 export const filtrado =(payload)=>{
