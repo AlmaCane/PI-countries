@@ -1,6 +1,6 @@
 
 import { useState } from 'react';
-
+import "./searchBar.css"
 
 export default function SearchBar({onSearch}) {
    const [nombre, setNombre] = useState("");
@@ -26,11 +26,11 @@ export default function SearchBar({onSearch}) {
    return (
       
       <div id="header">
-         <div className='searchContainer'>
-         <input id='buscar' type='search' placeholder='ingresa el nombre del pais que q uieras buscar'
+         <div className='search_container'>
+         <input type='text' placeholder='Buscar pais'
          value={nombre}
          onChange={handleChange} />
-         <button id='add' onClick={()=>{handleSearch();limpiarBar();}}>Buscar</button>
+         <img src="https://www.freeiconspng.com/uploads/search-icon-png-5.png" alt="buscar"  onClick={()=>{handleSearch();limpiarBar();}}/>
          </div>
       </div>
    );

@@ -19,12 +19,9 @@ module.exports = (sequelize) => {
       },
 
       dificultad: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.ENUM("uno", "dos", "tres", "cuatro", "cinco", "seis", "siete", "ocho", "nueve", "diez"),
         allowNull: false,
-        validate: {
-          min: 1,
-          max: 5,
-        },
+        
       },
 
       duracion: {

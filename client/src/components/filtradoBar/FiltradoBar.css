@@ -1,0 +1,27 @@
+select {
+    padding: 0.5em; /* Ajusta el relleno interno */
+    font-size: 1em; /* Tamaño de fuente */
+    border: 1px solid #ccc; /* Borde delgada de color gris */
+    border-radius: 4px; /* Bordes redondeados */
+    background-color: #fff; /* Color de fondo blanco */
+    appearance: none; /* Elimina los estilos nativos del navegador */
+    cursor: pointer; /* Cambia el cursor al puntero al pasar sobre el elemento */
+  }
+  
+  /* Estilo cuando el select está enfocado */
+  select:focus {
+    outline: none; /* Elimina el contorno predeterminado del navegador */
+    border-color: #007bff; /* Cambia el color del borde cuando el select está enfocado */
+    box-shadow: 0 0 0 0.1em rgba(0, 123, 255, 0.25); /* Agrega una sombra alrededor del select cuando está enfocado */
+  }
+  
+  /* Estilo para opciones desactivadas */
+  select option:disabled {
+    color: #999; /* Color de texto gris para opciones desactivadas */
+  }
+  
+  /* Estilo para opciones seleccionadas */
+  select option:checked {
+    background-color: #007bff; /* Color de fondo azul para opciones seleccionadas */
+    color: #fff; /* Color de texto blanco para opciones seleccionadas */
+  }

@@ -13,8 +13,8 @@ export default function MenuBar() {
 
     return (
         <div>
-            <img id='imagen' src="https://th.bing.com/th/id/OIP.svBJWBQ6AfxCvUmZgkOj5AHaHa?rs=1&pid=ImgDetMain" alt="menu" onClick={toggleMenu} />
-           
+            <img id='imagen' src="https://icon-library.com/images/menu-icon-png-3-lines/menu-icon-png-3-lines-15.jpg" alt="menu" onClick={toggleMenu} />
+
             {menuVisible && <NavBar />}
         </div>
     );

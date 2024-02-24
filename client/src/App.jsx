@@ -1,7 +1,8 @@
-import {Route, Routes, useLocation} from "react-router-dom"
+import {MemoryRouter, Route, Routes, useLocation} from "react-router-dom"
 import LandingPage from "../src/views/landingPage/LandingPage"
 import './App.css'
-import HomePage from "./views/homePage/HomePage"
+import HomePage from "./views/homePage/HomePage";
+import MemoryGame from "./views/memoryGame/memoryGame";
 
 import Form from "./views/activityCreate/form/form"
 import MenuBar from "./views/menuBar/MenuBar";
@@ -17,6 +18,7 @@ function App() {
 
 <Routes>
   <Route path="/" element= {<LandingPage/>}></Route>
+  <Route path="/game" element={<MemoryGame/>}/>
  <Route path="/home" element={<HomePage /> }/>
  <Route path="/form" element={<Form/>} />
  <Route path="/activities" element={<ActivityView/>}/>

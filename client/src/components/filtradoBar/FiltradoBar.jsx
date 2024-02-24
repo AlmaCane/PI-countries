@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { ordenado, filtrado, getAllCountries } from "../../redux/actionsCreate";
 import { useState } from "react";
+import "./FiltradoBar.css"
 
 export default function FiltradoBar() {
   const countries = useSelector((state) => state.countries);

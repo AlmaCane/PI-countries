@@ -8,9 +8,15 @@ export default function Cards({countriesToShow,prevPage,nextPage,pagina}) {
 
   if (pathname === "/home") {
     return (
+      <div >
+        <div className="divboton">
+          <button onClick={prevPage} className="boton">Anterior</button>
+          <h4 className='paginaStyle'>Página: {pagina}</h4>
+      <button onClick={nextPage} className="boton">Siguiente</button>
+        
+      </div>
       <div className="cartas">
-      <button onClick={prevPage}>Anterior</button>
-      <button onClick={nextPage}>Siguiente</button>
+      
         {countriesToShow.map((pais) => (
           <Card                          
           key={pais.id}
@@ -24,9 +30,14 @@ export default function Cards({countriesToShow,prevPage,nextPage,pagina}) {
             poblacion={pais.poblacion}
           />
         ))}
-              <button onClick={prevPage}>Anterior</button>
-      <button onClick={nextPage}>Siguiente</button>
+        </div>
+        <div className="divboton">
+
+              <button onClick={prevPage} className="boton">Anterior</button>
       <h4 className='paginaStyle'>Página: {pagina}</h4> 
+      <button onClick={nextPage} className="boton">Siguiente</button>
+
+        </div>
       </div>
     );
   } else {

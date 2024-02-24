@@ -1,0 +1,14 @@
+body{
+background-image: url("https://th.bing.com/th/id/R.fdc9ebdd6fd9a9ad990130884b2b4895?rik=yQ0dyNnHRcaAZw&riu=http%3a%2f%2fwww.danielreeve.co.nz%2fMaps%2fgallery1%2fimages%2f102WorldMiddleEarth.jpg&ehk=EGHl92cIpLc10ysmzVp8x86WJwIw4eyP%2bJ1u6%2fDlKtM%3d&risl=&pid=ImgRaw&r=0");
+width: 100vw; /* Ancho del viewport */
+height: 100vh; /* Altura del viewport */
+object-fit: cover;
+}
+
+img{
+width: 270px;
+height: 300px;
+display: flex;
+justify-content: center; /* Alinea horizontalmente al centro */
+align-items: center; /* Alinea verticalmente al centro */
+}
