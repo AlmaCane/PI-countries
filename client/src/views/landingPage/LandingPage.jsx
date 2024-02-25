@@ -4,8 +4,8 @@ export default function LandingPage(){
 
     
 return(
-    <div>
-       <Link to={"/home"}> <img  src="https://i.pinimg.com/564x/5c/4f/41/5c4f41be1310f954243f5068465c2cf5.jpg" alt="mundo"  /></Link>
+    <div className="divimagen">
+       <Link to={"/home"}> <img className="mundo" src="https://media.raig.com/product/globo-terraqueo-fisico-y-politico-con-relieve-30cm-800x800.jpeg" alt="mundo"  /></Link>
       
     </div>
     )

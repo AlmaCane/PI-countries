@@ -1,85 +1,134 @@
-import { useState } from 'react'; // Import useState
-import { useSelector } from 'react-redux';
-import Select from 'react-select';
-import { createActivity } from '../../../redux/actionsCreate';
-import { useDispatch } from 'react-redux';
+import React, { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import Select from "react-select";
+import { createActivity, getAllCountries } from "../../../redux/actionsCreate";
+import NavBar from "../../../components/navBar/NavBar";
 
 export default function Form() {
+  const [activityData, setActivityData] = useState({
+    nombre: "",
+    dificultad: "",
+    duracion: "",
+    estacion: "",
+    countries: [],
+  });
   const countries = useSelector((state) => state.countries);
-  const options = countries.map((country) => ({
-    value: country.nombre,
-    label: country.nombre,
-  }));
-
   const dispatch = useDispatch();
-  const [selectedCountry, setSelectedCountry] = useState(null); // State to hold selected country
+
+  useEffect(() => {
+    dispatch(getAllCountries());
+  }, [dispatch]);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setActivityData({ ...activityData, [name]: value });
+  };
+
+  const handleCountrySelect = (selectedOptions) => {
+    const selectedCountryIds = selectedOptions.map((option) => option.value);
+    setActivityData({ ...activityData, countries: selectedCountryIds });
+  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const formData = new FormData(event.target);
-    const nombre = formData.get('nombre');
-    const estacion = formData.get('estacion');
-    const dificultad = formData.get('dificultad'); // Corrected typo
-    const pais = selectedCountry ? selectedCountry.value : ''; // Access selected country value
-    const duracion = formData.get('duracion');
-    dispatch(
-      createActivity({
-        nombre,
-        estacion,
-        dificultad,
-        pais,
-        duracion,
-      })
-    );
+    if (!isFormComplete()) {
+      alert("Por favor, complete todos los campos del formulario.");
+      return;
+    }
+    dispatch(createActivity(activityData));
+    alert("Actividad creada exitosamente");
+    resetForm();
   };
 
-  const handleCountryChange = (selectedOption) => {
-    setSelectedCountry(selectedOption); // Update selected country
+  const isFormComplete = () => {
+    const { nombre, dificultad, duracion, estacion, countries } = activityData;
+    return !!nombre && !!dificultad && !!duracion && !!estacion && countries.length > 0;
   };
+
+  const resetForm = () => {
+    setActivityData({
+      nombre: "",
+      dificultad: "",
+      duracion: "",
+      estacion: "",
+      countries: [],
+    });
+  };
+
+  // Transforma la lista de países en un formato compatible con react-select
+  const countryOptions = countries.map((country) => ({
+    value: country.id,
+    label: country.nombre,
+  }));
 
   return (
     <div>
+      <NavBar />
       <h1>Crea tu actividad</h1>
       <form onSubmit={handleSubmit}>
-        <label>
+        <label htmlFor="nombre">
           Nombre:
-          <input type="text" name="nombre" />
+          <input
+            type="text"
+            name="nombre"
+            value={activityData.nombre}
+            onChange={handleChange}
+          />
         </label>
-        <label>
+        <label htmlFor="estacion">
           Estacion:
-          <select name="estacion">
+          <select
+            name="estacion"
+            onChange={handleChange}
+            value={activityData.estacion}
+          >
+            <option value="">- --- -</option>
             <option value="Verano">Verano</option>
             <option value="Primavera">Primavera</option>
             <option value="Otoño">Otoño</option>
             <option value="Invierno">Invierno</option>
           </select>
         </label>
-
-        <label>
+        <label htmlFor="dificultad">
           Dificultad:
-          <select name="dificultad"> {/* Corrected typo */}
-            <option value="uno">1</option>
-            <option value="dos">2</option>
-            <option value="tres">3</option>
-            <option value="cuatro">4</option>
-            <option value="cinco">5</option>
-            <option value="seis">6</option>
-            <option value="siete">7</option>
-            <option value="ocho">8</option>
-            <option value="nueve">9</option>
-            <option value="diez">10</option>
+          <select
+            name="dificultad"
+            onChange={handleChange}
+            value={activityData.dificultad}
+          >
+            <option value="">- --- -</option>
+            {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((value) => (
+              <option key={value} value={value}>
+                {value}
+              </option>
+            ))}
           </select>
         </label>
-        <label>
-          País:
-          <Select options={options} onChange={handleCountryChange} value={selectedCountry} />
+        <label htmlFor="countries">
+          Seleccione el País:
+          <Select
+            name="countries"
+            id="countries"
+            isMulti
+            isSearchable
+            onChange={handleCountrySelect}
+            value={countryOptions.filter((option) =>
+              activityData.countries.includes(option.value)
+            )}
+            options={countryOptions}
+          />
         </label>
-        <label>
+        <label htmlFor="duracion">
           Duracion:
-          <input type="number" name="duracion" />
+          <input
+            type="number"
+            name="duracion"
+            placeholder="-- Horas--"
+            value={activityData.duracion}
+            onChange={handleChange}
+          />
         </label>
-
-        <button type="submit" >Crear</button>
+        <button type="submit">Crear</button>
       </form>
     </div>
   );

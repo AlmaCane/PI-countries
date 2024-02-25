@@ -1,0 +1,8 @@
+.imagen{
+width: 40px;
+height: 40px;
+}
+.divfiltros{
+display: flex;
+flex-direction: row;
+}

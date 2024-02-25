@@ -7,6 +7,7 @@ import { useState } from "react";
 import { getAllCountries, getCountryByName } from "../../redux/actionsCreate";
 import FiltradoBar from "../../components/filtradoBar/FiltradoBar";
 import FilterBar from "../filterBar/filterBar";
+import MenuBar from "../menuBar/MenuBar";
 
 export default function HomePage() {
   const dispatch = useDispatch();
@@ -48,22 +49,23 @@ export default function HomePage() {
   return (
     <div className="home">
       <div className="title">
+      <MenuBar/>
 
       <h1>Recorré el mundo
 
       <span>Descubrí todos los países que existen</span>
       </h1>
 
-      </div>
       <div className="filtersnsearch">
 
       <SearchBar onSearch={handleSearch} />
       <div className="filterbar">
-        <h3>200 resultados</h3>
+        <h3>     </h3>
         <div className="filter">
 
       <FilterBar/>
         </div>
+      </div>
 
       </div>
 

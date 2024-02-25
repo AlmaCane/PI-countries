@@ -3,9 +3,7 @@ import LandingPage from "../src/views/landingPage/LandingPage"
 import './App.css'
 import HomePage from "./views/homePage/HomePage";
 import MemoryGame from "./views/memoryGame/memoryGame";
-
 import Form from "./views/activityCreate/form/form"
-import MenuBar from "./views/menuBar/MenuBar";
 import ActivityView from "./views/activitiesView/ActivitiesView"
 import Detail from "./views/detail/detail"
 
@@ -14,7 +12,7 @@ function App() {
 
   return (
     <div>
-    <MenuBar/>
+ 
 
 <Routes>
   <Route path="/" element= {<LandingPage/>}></Route>

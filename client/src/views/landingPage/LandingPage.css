@@ -5,7 +5,7 @@ height: 100vh; /* Altura del viewport */
 object-fit: cover;
 }
 
-img{
+.mundo{
 width: 270px;
 height: 300px;
 display: flex;

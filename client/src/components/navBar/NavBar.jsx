@@ -5,7 +5,8 @@ export default function NavBar() {
   const [menuVisible, setMenuVisible] = useState(false);
 
   const handleMenuClick = () => {
-    setMenuVisible(!menuVisible); // Cambiar el estado de visibilidad del menú
+    setMenuVisible(!menuVisible); 
+    // Cambiar el estado de visibilidad del menú
   };
   return (
     <div className="bar">

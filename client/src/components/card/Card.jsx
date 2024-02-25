@@ -5,9 +5,9 @@ export default function Card({ id, nombre, continente, capital, subregion, area,
   return (
     <div className="card">
       <div><img src={imagen} alt={nombre} id="bandera" /></div>
-      <div>{id}</div>
+      <div >{id}</div>
       <Link to={`/detail/${id}`}>
-        <div>{nombre}</div>
+        <div className="nombre">{nombre}</div>
       </Link>
       <div>{continente}</div>
       <div>{capital}</div>
