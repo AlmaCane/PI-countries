@@ -33,6 +33,7 @@ h1 span:after,
 h1 span:before {
   content: " ";
   display: block;
+  padding-top: 20px;
 }
 .title {
   background-color: rgba(75, 47, 18, 0.5);

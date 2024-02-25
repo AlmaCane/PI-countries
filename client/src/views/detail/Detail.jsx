@@ -29,6 +29,7 @@ export default function Detail() {
         <h2>Área Territorial: {country.area} km²</h2>
         <h2>Población: {country.poblacion}</h2>
         <h2>Actividades:</h2>
+        <NavLink to="/form" >Añadir</NavLink>
       </div>
     </div>
   );

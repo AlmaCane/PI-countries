@@ -13,11 +13,22 @@
   .card:hover {
     box-shadow: 0 6px 10px rgba(0, 0, 0, 0.8);
   }
+  .continente{
+  font-size: 22px;
+  font-variant: small-caps;
+  }
   .nombre{
+    padding-top: 20px;
     z-index: 1;
     font-size: 30px;
     color: rgb(255, 221, 0);
+    font-variant: small-caps;
+
     text-decoration: none; /* Sin subrayado */
+  
+  }
+  .nombre:hover{
+  color: #ffae00;
   }
   
   #bandera{

@@ -1,11 +1,36 @@
 .bar{
-    opacity: 0.5;
-background-color: black;
-height: 300px;
-width: 100px;
+
+background-color: rgba(255, 255, 255, 0.67);
+height: fit-content;
+width: 300px;
 display: flex;
 flex-direction: column;
 position:absolute;
 z-index: 1000;
+border-radius: 20px;
 }
 
+.nosubrayado{
+    text-decoration: none !important;
+    color: rgb(7, 10, 10);
+}
+.separador{
+background-color: rgb(78, 43, 12);
+border-radius: 20px 20px 0px 0px;
+
+
+}
+.separador2{
+background-color: rgb(108, 67, 26);
+
+}
+.separador3{
+background-color: rgb(143, 105, 69);
+border-radius: 0px 0px 20px 20px;
+
+
+}
+.nosubrayado:hover{
+    color: brown;
+
+}

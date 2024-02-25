@@ -3,6 +3,8 @@ import { useSelector, useDispatch } from "react-redux";
 import Select from "react-select";
 import { createActivity, getAllCountries } from "../../../redux/actionsCreate";
 import NavBar from "../../../components/navBar/NavBar";
+import MenuBar from "../../menuBar/MenuBar";
+import "./Form.css";
 
 export default function Form() {
   const [activityData, setActivityData] = useState({
@@ -63,7 +65,7 @@ export default function Form() {
 
   return (
     <div>
-      <NavBar />
+      <MenuBar/>
       <h1>Crea tu actividad</h1>
       <form onSubmit={handleSubmit}>
         <label htmlFor="nombre">
@@ -73,6 +75,7 @@ export default function Form() {
             name="nombre"
             value={activityData.nombre}
             onChange={handleChange}
+            id="name"
           />
         </label>
         <label htmlFor="estacion">

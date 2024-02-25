@@ -28,9 +28,8 @@
     height: 50px;
     color: black;
     background-color: rgba(255, 255, 255, 0.5);
-   
     padding: 8px 16px;
     text-decoration: none;
     transition: background-color .3s;
-   
-    margin:auto;}
+    margin: 10px auto; 
+  }
