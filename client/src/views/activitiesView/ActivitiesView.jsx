@@ -1,11 +1,17 @@
 
 import { Link } from "react-router-dom";
 import CardActivity from "../../components/cardActivity/cardActivity";
-  import {useSelector} from "react-redux"
+  import {useSelector, useDispatch} from "react-redux"
+  import { getAllActivities } from "../../redux/actionsCreate";
+import { useEffect } from "react";
 
 export default function ActivityView(){
 
-    const activities= useSelector((state)=>state.activities)
+    const activities= useSelector((state)=>state.activities);
+    const dispatch = useDispatch();
+    useEffect(()=>{
+    dispatch(getAllActivities())
+    }, [dispatch])
 
     return (
       <div>

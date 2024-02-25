@@ -1,7 +1,8 @@
-import { useSelector} from "react-redux";
 
-export default function CardActivity({ nombre, dificultad, duracion, estacion, countries }) {
-  const { countries } = useSelector((state) => state.countries);
+
+export default function CardActivity(activities) {
+  const { nombre, dificultad, duracion, estacion, countries } = activities;
+  console.log(nombre);
   return (
     <div className="card">
       <div>{nombre}</div>
@@ -11,7 +12,7 @@ export default function CardActivity({ nombre, dificultad, duracion, estacion, c
       <div>
         <strong>Países:</strong>
         <ul>
-          {countries.map((country, index) => (
+          {countries?.map((country, index) => (
             <li key={index}>{country}</li>
           ))}
         </ul>

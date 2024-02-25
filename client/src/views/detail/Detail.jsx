@@ -2,6 +2,8 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getCountryById } from "../../redux/actionsCreate";
 import { useParams, NavLink } from "react-router-dom";
+import "./Detail.css"
+import MenuBar from "../menuBar/MenuBar";
 
 export default function Detail() {
   const { id } = useParams();
@@ -14,10 +16,11 @@ export default function Detail() {
 
   return (
     <div>
-      <div key={country.id}>
+      <MenuBar/>
+      <div key={country.id} className="carddetail">
         <NavLink to="/home">🢀 </NavLink>
-        <h3>{country.nombre}</h3>
-        <img src={country.imagen} alt={country.nombre} />
+        <h3 className="name">{country.nombre}</h3>
+        <img src={country.imagen} alt={country.nombre} className="imagenbandera" />
         <h2>{country.name}</h2>
         <hr />
         <h2>Capital: {country.capital}</h2>

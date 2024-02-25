@@ -20,28 +20,22 @@ export default function FiltradoBar() {
     <div>
 
       <select onChange={(e) => handleOrder(e)}>
-        <option value="x" >Por area</option>
+        <option value="x" >Ordenar</option>
 
        
         <option value="MasArea">Mayor Área</option>
         <option value="MenosArea">Menor Área</option>
-      
-      </select>
-<select onChange={e=>handleOrder(e)}>
-<option value="x" >Por población</option>
 
 <option value="MasPoblacion">Mayor Población</option>
         <option value="MenosPoblacion">Menor Población</option>
-</select>
-
-      <select onChange={(e) => handleOrder(e)}>
-      <option value="x" >Por alfabeto</option>
-
       <option value="Alfabeticamente">Alfabeticamente</option>
         <option value="Alfabeticamente descendente">Alfabeticamente descendente</option>
+      
       </select>
+
+      
       <select onChange={(e) => handleFiltrado(e)}>
-        <option value="x" >Filtrar por continente</option>
+        <option value="x" >Filtrar</option>
 
         <option value="Africa">Africa</option>
         <option value="Asia">Asia</option>

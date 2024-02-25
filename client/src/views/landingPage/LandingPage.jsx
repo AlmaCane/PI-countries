@@ -4,9 +4,13 @@ export default function LandingPage(){
 
     
 return(
-    <div className="divimagen">
-       <Link to={"/home"}> <img className="mundo" src="https://media.raig.com/product/globo-terraqueo-fisico-y-politico-con-relieve-30cm-800x800.jpeg" alt="mundo"  /></Link>
+<div>
+<h1>Bienvenido a tu viaje</h1>
+        <div className="divimagen">
+       <Link to={"/home"}> <img className="mundo" src="https://graphicriver.img.customer.envatousercontent.com/files/131341929/Vintage_Nautical_Compass-590.jpg?auto=compress%2Cformat&q=80&fit=crop&crop=top&max-h=8000&max-w=590&s=26398763ac7a330e563c2c34044f2296" alt="mundo"  /></Link>
       
     </div>
+
+</div>
     )
 }

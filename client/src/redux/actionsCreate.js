@@ -41,25 +41,20 @@ export const deleteActivity = (nombre) => async (dispatch) => {
     });
   }
 };
-
 export const getAllActivities = () => {
-return async (dispatch) => {
-try {
-  const {data} = await axios (endpoint);
-  dispatch ({
-  type: GET_ALL_ACTIVITIES,
-  payload: data,
-  })
-
-
-} catch (error) {
-  dispatch({
-  type: "ERROR",
-  payload: error.message
-  })
-}
-}
-}
+  return async (dispatch) => {
+    try {
+      const { data } = await axios(endpoint);
+      dispatch({
+        type: GET_ALL_ACTIVITIES,
+        payload: data,
+      });
+    } catch (error) {
+      // Manejar el error aquí si es necesario
+      console.error("Error al obtener todas las actividades:", error);
+    }
+  };
+};
 
 export const getAllCountries = () => {
   return async (dispatch) => {

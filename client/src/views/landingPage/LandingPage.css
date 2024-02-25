@@ -3,12 +3,14 @@ background-image: url("https://th.bing.com/th/id/R.fdc9ebdd6fd9a9ad990130884b2b4
 width: 100vw; /* Ancho del viewport */
 height: 100vh; /* Altura del viewport */
 object-fit: cover;
+
 }
 
 .mundo{
-width: 270px;
+width: 300px;
 height: 300px;
 display: flex;
+margin: auto;
 justify-content: center; /* Alinea horizontalmente al centro */
 align-items: center; /* Alinea verticalmente al centro */
 }
