@@ -38,6 +38,7 @@ export default function Form() {
       return;
     }
     dispatch(createActivity(activityData));
+    console.log(activityData);
     alert("Actividad creada exitosamente");
     resetForm();
   };
@@ -64,28 +65,29 @@ export default function Form() {
   }));
 
   return (
-    <div>
+    <div >
       <MenuBar/>
       <h1>Crea tu actividad</h1>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className="form">
         <label htmlFor="nombre">
-          Nombre:
+        
           <input
             type="text"
             name="nombre"
             value={activityData.nombre}
             onChange={handleChange}
             id="name"
+            placeholder="Nombre de la actividad"
           />
         </label>
         <label htmlFor="estacion">
-          Estacion:
           <select
             name="estacion"
             onChange={handleChange}
             value={activityData.estacion}
+            id="estacion"
           >
-            <option value="">- --- -</option>
+            <option value="" disabled>Estacion</option>
             <option value="Verano">Verano</option>
             <option value="Primavera">Primavera</option>
             <option value="Otoño">Otoño</option>
@@ -93,13 +95,13 @@ export default function Form() {
           </select>
         </label>
         <label htmlFor="dificultad">
-          Dificultad:
           <select
             name="dificultad"
             onChange={handleChange}
             value={activityData.dificultad}
+            id="dificultad"
           >
-            <option value="">- --- -</option>
+            <option value="" disabled> Dificultad</option>
             {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((value) => (
               <option key={value} value={value}>
                 {value}
@@ -107,9 +109,10 @@ export default function Form() {
             ))}
           </select>
         </label>
-        <label htmlFor="countries">
-          Seleccione el País:
+        <label htmlFor="countries" >
+    
           <Select
+          placeholder="Seleccione los paises en donde se realiza"
             name="countries"
             id="countries"
             isMulti
@@ -122,16 +125,17 @@ export default function Form() {
           />
         </label>
         <label htmlFor="duracion">
-          Duracion:
           <input
+          placeholder="Duracion en horas"
             type="number"
             name="duracion"
-            placeholder="-- Horas--"
+  
             value={activityData.duracion}
             onChange={handleChange}
+            id="duracion"
           />
         </label>
-        <button type="submit">Crear</button>
+        <button type="submit" className="crear">Crear</button>
       </form>
     </div>
   );

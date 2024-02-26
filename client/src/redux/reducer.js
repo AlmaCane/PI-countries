@@ -11,7 +11,6 @@ import {
 
 const initialstate = {
   activities: [],
-  allActtivities: [],
   errors: [],
   countries: [],
   countriesCopy: [],
@@ -25,14 +24,12 @@ function reducer(state = initialstate, action) {
       return {
       ...state,
       activities: action.payload, 
-      allActivities: action.payload,
       errors: []
       }
     case CREATE_ACTIVITY:
       return {
         ...state,
         activities:[...state.activities, action.payload],
-        allActivities: [...state.activities, action.payload],
         errors: [],
       };
 

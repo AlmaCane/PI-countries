@@ -1,0 +1,43 @@
+#countries{
+/* Estilos generales */
+display: flex;
+align-items: center;
+margin: 10px auto;
+width: fit-content;
+padding: 0px;
+font-size: 16px;
+border: 1px solid #ccc;
+border-radius: 4px;
+outline: none; /* Eliminar el contorno al hacer clic */
+background-color: #fff;
+color: #333;
+}
+
+.form{
+display: flex;
+flex-direction: column;
+align-items:center ;
+
+border: 1.5px solid #ffffffab; /* Borde de 2px de grosor y color azul */
+  padding: 10px; /* Añadir relleno alrededor del contenido */
+  box-shadow: 0 6px 6px rgba(0, 0, 0, 0.5);
+}
+.crear{
+    border-radius: 20px;
+    display: flex;
+    margin: auto;
+    align-items: center;
+width: 96px;
+height: 50px;
+}
+#name{
+width:200px;
+height: 6px;
+margin-bottom: 10px;
+}
+#duracion{
+    width:200px;
+    height: 6px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
