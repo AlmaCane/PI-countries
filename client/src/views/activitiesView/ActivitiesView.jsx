@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
-import "./ActividadesView.css";
+import "./ActivitiesView.css";
 import { useSelector, useDispatch } from "react-redux";
-import { getAllActivities } from "../../redux/actionsCreate";
+import { getActivitiesCountry, getAllActivities } from "../../redux/actionsCreate";
 import { useEffect } from "react";
 import MenuBar from "../menuBar/MenuBar";
 
@@ -11,6 +11,8 @@ export default function ActivityView() {
 
   useEffect(() => {
     dispatch(getAllActivities());
+    dispatch(getActivitiesCountry(id))
+    console.log(activities);
   }, [dispatch]);
 
   return (
@@ -22,9 +24,9 @@ export default function ActivityView() {
       <div className="Actcard">
         {activities.length ? (
           activities.map((activity) => (
-            <div key={activity.nombre}>
+            <div className="carta" key={activity.nombre}>
               <h2>{activity.nombre}</h2>
-              <h3>Duracion: {activity.duracion}</h3>
+              <h3>Duracion: {activity.duracion} hs</h3>
               <h3>
                 Países:
                 {activity.countries?.map((country) => (

@@ -7,10 +7,17 @@ import {
   GET_COUNTRY_BY_NAME,
   FILTER,
   ORDER,
-  GET_ALL_ACTIVITIES
+  GET_ALL_ACTIVITIES,
+  GET_ACTIVITIES_COUNTRY
 } from "./actions";
 
 const endpoint = "http://localhost:3001/activities";
+export const getActivitiesCountry= (countries)=>{
+return {
+type: GET_ACTIVITIES_COUNTRY,
+payload: countries
+}
+}
 
 export const createActivity = (activity) => async (dispatch) => {
   try {

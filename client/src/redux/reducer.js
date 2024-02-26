@@ -7,6 +7,7 @@ import {
   FILTER,
   ORDER,
   GET_ALL_ACTIVITIES,
+  GET_ACTIVITIES_COUNTRY,
 } from "./actions";
 
 const initialstate = {
@@ -15,11 +16,17 @@ const initialstate = {
   countries: [],
   countriesCopy: [],
   idCountry: [],
+  countryActivity: []
 };
 
 function reducer(state = initialstate, action) {
   switch (action.type) {
-
+    case GET_ACTIVITIES_COUNTRY:
+      return{
+      ...state,
+      countryActivity: action.payload,
+      errors: []
+      }
     case GET_ALL_ACTIVITIES:
       return {
       ...state,

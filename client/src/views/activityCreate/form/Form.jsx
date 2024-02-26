@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Select from "react-select";
-import { createActivity, getAllCountries } from "../../../redux/actionsCreate";
-import NavBar from "../../../components/navBar/NavBar";
+import { createActivity, getActivitiesCountry, getAllCountries } from "../../../redux/actionsCreate";
+import Validation from "./validation";
 import MenuBar from "../../menuBar/MenuBar";
 import "./Form.css";
 
@@ -38,6 +38,7 @@ export default function Form() {
       return;
     }
     dispatch(createActivity(activityData));
+    dispatch(getActivitiesCountry(activityData.countries))
     console.log(activityData);
     alert("Actividad creada exitosamente");
     resetForm();
@@ -57,7 +58,13 @@ export default function Form() {
       countries: [],
     });
   };
+  const [errors, setErrors] = useState({nombre:'.', 
+  dificultad:"",
+  duracion:"",
+  estacion:"",
+  });
 
+ 
   // Transforma la lista de países en un formato compatible con react-select
   const countryOptions = countries.map((country) => ({
     value: country.id,
@@ -126,7 +133,7 @@ export default function Form() {
         </label>
         <label htmlFor="duracion">
           <input
-          placeholder="Duracion en horas"
+          placeholder="Duración en horas"
             type="number"
             name="duracion"
   

@@ -9,9 +9,16 @@ export default function Detail() {
   const { id } = useParams();
   const dispatch = useDispatch();
   const country = useSelector((state) => state.idCountry); // Obtener el país directamente, no como un array
-  
+  const activities = useSelector((state) => state.activities);
+  const actividades = activities.filter((actividad) => 
+  actividad.countries?.some((country) => country.id === id)
+);
+
   useEffect(() => {
-    dispatch(getCountryById(id)); // Pasar el ID del país a la acción
+    dispatch(getCountryById(id)); 
+    console.log(id);// Pasar el ID del país a la acció<nav></nav>
+    console.log(activities);
+    console.log(actividades);
   }, [id, dispatch]);
 
   return (
@@ -29,6 +36,16 @@ export default function Detail() {
         <h2>Área Territorial: {country.area} km²</h2>
         <h2>Población: {country.poblacion}</h2>
         <h2>Actividades:</h2>
+        <ul>
+          {actividades.map((actividad) => (
+            <li key={actividad.id}>
+              <h3>{actividad.nombre}</h3>
+              <p>Duración: {actividad.duracion}</p>
+              <p>Dificultad: {actividad.dificultad}</p>
+            </li>
+          ))}
+        </ul>
+      
         <NavLink to="/form" >Añadir</NavLink>
       </div>
     </div>
