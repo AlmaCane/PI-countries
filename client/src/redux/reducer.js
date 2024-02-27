@@ -8,7 +8,8 @@ import {
   ORDER,
   GET_ALL_ACTIVITIES,
   SAVE_ACTIVITIES_COUNTRY,
-  FILTER_ACT
+  FILTER_ACT,
+  FILTRADO_ORDENADO
 } from "./actions";
 
 const initialstate = {
@@ -17,7 +18,8 @@ const initialstate = {
   countries: [],
   countriesCopy: [],
   idCountry: [],
-  countryActivity: []
+  countryActivity: [],
+  filtros:[]
 };
 
 function reducer(state = initialstate, action) {
@@ -38,9 +40,50 @@ function reducer(state = initialstate, action) {
       return {
         ...state,
         activities:[...state.activities, action.payload],
-
+        countryActivity: action.payload.countries,
         errors: [],
       };
+      case FILTRADO_ORDENADO:
+        const { orden, filtro } = action.payload;
+        
+        // Filtrar países por continente si se proporciona un filtro de continente
+        let filteredpais = [...state.countriesCopy]; // Hacer una copia para evitar mutar el estado original
+        if (filtro !== "x") {
+          filteredpais = filteredpais.filter(country => country.continente.includes(filtro));
+        }
+        
+        // Realizar el ordenamiento si se proporciona un tipo de orden
+        let sorted = [...filteredpais];
+        if (orden !== "x") {
+          switch (orden) {
+            case "Alfabeticamente":
+              sorted.sort((a, b) => a.nombre.localeCompare(b.nombre));
+              break;
+            case "Alfabeticamente descendente":
+              sorted.sort((a, b) => b.nombre.localeCompare(a.nombre));
+              break;
+            case "MasPoblacion":
+              sorted.sort((a, b) => b.poblacion - a.poblacion);
+              break;
+            case "MasArea":
+              sorted.sort((a, b) => b.area - a.area);
+              break;
+            case "MenosPoblacion":
+              sorted.sort((a, b) => a.poblacion - b.poblacion);
+              break;
+            case "MenosArea":
+              sorted.sort((a, b) => a.area - b.area);
+              break;
+            default:
+              break;
+          }
+        }
+      
+        return {
+          ...state,
+          countries: sorted,
+        };
+      
 
     case DELETE_ACTIVITY:
       return { ...state, activities: action.payload, errors: [] };

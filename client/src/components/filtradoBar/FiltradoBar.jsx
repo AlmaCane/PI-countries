@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { ordenado, filtrado, getAllCountries, filterActivity} from "../../redux/actionsCreate";
+import { ordenado, filtrado, getAllCountries,filtradoYOrdenado, filterActivity} from "../../redux/actionsCreate";
 import { useState } from "react";
 import "./FiltradoBar.css";
 
@@ -12,6 +12,7 @@ export default function FiltradoBar({setPage}) {
   const [orden, setOrden] = useState("x"); // Estado local para el filtro de orden
   const [filtro, setFiltro] = useState("x");
   const [actFiltro, setActFiltro] = useState("x")
+  const[filyord, setFilyord] = useState("x")
 
   const mostrarTodos = () => {
     dispatch(getAllCountries());
@@ -26,6 +27,10 @@ export default function FiltradoBar({setPage}) {
     setOrden(valor); 
     dispatch(ordenado(valor)); 
     setPage(1)
+  };
+  const handleFiltradoYOrdenado = () => {
+    dispatch(filtradoYOrdenado(orden, filtro, actFiltro));
+    setPage(1); // Reiniciar la página a la primera cuando se aplica el filtrado y ordenamiento
   };
 
   const handleFiltrado = (e) => {
@@ -76,6 +81,8 @@ export default function FiltradoBar({setPage}) {
         <option value="Europe">Invierno</option>
         <option value="Oceania">Primavera</option>
       </select>
+      <button onClick={handleFiltradoYOrdenado}>Aplicar</button>
+
 
       <button onClick={mostrarTodos}>Mostrar todos</button>
     </div>
