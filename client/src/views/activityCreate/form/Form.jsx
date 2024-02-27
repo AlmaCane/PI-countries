@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Select from "react-select";
-import { createActivity, getActivitiesCountry, getAllCountries } from "../../../redux/actionsCreate";
+import { createActivity, getAllCountries } from "../../../redux/actionsCreate";
 import Validation from "./validation";
 import MenuBar from "../../menuBar/MenuBar";
 import "./Form.css";
@@ -38,7 +38,6 @@ export default function Form() {
       return;
     }
     dispatch(createActivity(activityData));
-    dispatch(getActivitiesCountry(activityData.countries))
     console.log(activityData);
     alert("Actividad creada exitosamente");
     resetForm();

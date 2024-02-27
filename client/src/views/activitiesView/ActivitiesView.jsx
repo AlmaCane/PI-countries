@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import "./ActivitiesView.css";
 import { useSelector, useDispatch } from "react-redux";
-import { getActivitiesCountry, getAllActivities } from "../../redux/actionsCreate";
+import { getAllActivities } from "../../redux/actionsCreate";
 import { useEffect } from "react";
 import MenuBar from "../menuBar/MenuBar";
 
@@ -11,7 +11,6 @@ export default function ActivityView() {
 
   useEffect(() => {
     dispatch(getAllActivities());
-    dispatch(getActivitiesCountry(id))
     console.log(activities);
   }, [dispatch]);
 

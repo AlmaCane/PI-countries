@@ -7,7 +7,8 @@ import {
   FILTER,
   ORDER,
   GET_ALL_ACTIVITIES,
-  GET_ACTIVITIES_COUNTRY,
+  SAVE_ACTIVITIES_COUNTRY,
+  FILTER_ACT
 } from "./actions";
 
 const initialstate = {
@@ -21,7 +22,7 @@ const initialstate = {
 
 function reducer(state = initialstate, action) {
   switch (action.type) {
-    case GET_ACTIVITIES_COUNTRY:
+    case SAVE_ACTIVITIES_COUNTRY:
       return{
       ...state,
       countryActivity: action.payload,
@@ -37,6 +38,7 @@ function reducer(state = initialstate, action) {
       return {
         ...state,
         activities:[...state.activities, action.payload],
+
         errors: [],
       };
 
@@ -103,6 +105,13 @@ function reducer(state = initialstate, action) {
           countries: filteredCountries,
         };
       }
+      case FILTER_ACT:
+        state.countries=state.countriesCopy
+        const countrAct=state.countries.filter((country)=>{
+            const filteredCountryByAct=country.Activities.find((activity)=>activity.estacion==action.payload);return filteredCountryByAct})
+        console.log(countrAct)
+        return {...state,countries:countrAct}
+
 
     default:
       return state;

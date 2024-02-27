@@ -17,7 +17,7 @@ const createActivity = async (
  const country = await Country.findAll({ where: { nombre: countries } });
 
  // Asignar el país a la actividad
- await newActivity.addCountries(country);
+ await newActivity.setCountries(country);
 
  return newActivity;
 };

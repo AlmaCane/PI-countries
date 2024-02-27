@@ -1,13 +1,30 @@
 .name{
 font-size: 40px;
 color: white;
+display: flex;
+justify-content: center;
+align-items: center;
+margin: auto;
+font-variant: small-caps;
+padding-bottom: 15px;
 
+}
+.flechitadiv{
+display:grid;
+grid-template-columns: repeat(3, 1fr); /* Tres columnas de igual tamaño */
+grid-gap: 435px;
+}
+
+.flechita{
+color: aliceblue;
+text-decoration: none;
 }
 .carddetail{
     display: flex;
     flex-direction: column;
     align-items: center;
     margin: auto;
+    width: 70%;
     background-color: rgba(75, 47, 18, 0.7); 
 }
 .carddetail:hover{
@@ -18,6 +35,13 @@ color: white;
     padding-inline: 1rem;
     display: flex;
     justify-content: center;
-    width: 250px;
+    width: fit-content;
+    align-items: center;
+    margin: auto;
     height: 200px;
     z-index: 1;}
+
+    .texto{
+    background-color: yellowgreen;
+    border-radius: 20px;
+    }

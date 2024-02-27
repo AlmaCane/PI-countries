@@ -46,6 +46,7 @@ export default function HomePage() {
   };
   
   
+
   return (
     <div className="home">
       <div className="title">
@@ -58,12 +59,12 @@ export default function HomePage() {
 
       <div className="filtersnsearch">
 
-      <SearchBar onSearch={handleSearch} />
+      <SearchBar onSearch={handleSearch} setPage={setPage} />
       <div className="filterbar">
         <h3>     </h3>
         <div className="filter">
 
-      <FilterBar/>
+      <FilterBar setPage={setPage}/>
         </div>
       </div>
 

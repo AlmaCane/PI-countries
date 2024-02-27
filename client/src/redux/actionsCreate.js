@@ -8,14 +8,22 @@ import {
   FILTER,
   ORDER,
   GET_ALL_ACTIVITIES,
-  GET_ACTIVITIES_COUNTRY
+  SAVE_ACTIVITIES_COUNTRY,
+  FILTER_ACT,
 } from "./actions";
 
 const endpoint = "http://localhost:3001/activities";
-export const getActivitiesCountry= (countries)=>{
+
+export const saveActivitiesCountry= (countries)=>{
 return {
-type: GET_ACTIVITIES_COUNTRY,
+type: SAVE_ACTIVITIES_COUNTRY,
 payload: countries
+}
+}
+export const filterActivity=(actividad)=>{
+return{
+type: FILTER_ACT, 
+payload:actividad
 }
 }
 
