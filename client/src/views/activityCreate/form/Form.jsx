@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Select from "react-select";
-import { createActivity, getAllCountries } from "../../../redux/actionsCreate";
+import { createActivity, getAllCountries, seleccionarPaises } from "../../../redux/actionsCreate";
 import Validation from "./validation";
 import MenuBar from "../../menuBar/MenuBar";
 import "./Form.css";
@@ -24,12 +24,24 @@ export default function Form() {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setActivityData({ ...activityData, [name]: value });
+    const validationErrors = Validation({ ...activityData, [name]: value });
+    setErrors(validationErrors);
   };
-
   const handleCountrySelect = (selectedOptions) => {
     const selectedCountryIds = selectedOptions.map((option) => option.value);
     setActivityData({ ...activityData, countries: selectedCountryIds });
+    const info = {
+      countryIds: selectedCountryIds,
+      activityName: activityData.nombre
+    };
+    dispatch(seleccionarPaises(info));
   };
+  
+  useEffect(() => {
+    // Validar al cargar el componente y cada vez que cambie userData
+    const validationErrors = Validation(activityData);
+    setErrors(validationErrors);
+}, [activityData]);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -57,10 +69,9 @@ export default function Form() {
       countries: [],
     });
   };
-  const [errors, setErrors] = useState({nombre:'.', 
+  const [errors, setErrors] = useState({nombre:'', 
   dificultad:"",
   duracion:"",
-  estacion:"",
   });
 
  
@@ -85,6 +96,7 @@ export default function Form() {
             id="name"
             placeholder="Nombre de la actividad"
           />
+          {errors.nombre &&<p>{errors.nombre}</p>}
         </label>
         <label htmlFor="estacion">
           <select
@@ -140,6 +152,7 @@ export default function Form() {
             onChange={handleChange}
             id="duracion"
           />
+          {errors.duracion && <p>{errors.duracion}</p>}
         </label>
         <button type="submit" className="crear">Crear</button>
       </form>

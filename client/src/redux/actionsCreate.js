@@ -10,13 +10,21 @@ import {
   GET_ALL_ACTIVITIES,
   SAVE_ACTIVITIES_COUNTRY,
   FILTER_ACT,
-  FILTRADO_ORDENADO
+  FILTRADO_ORDENADO,
+  SELECCIONAR_PAISES
   
 } from "./actions";
 
 const endpoint = "http://localhost:3001/activities";
 
 // actionsCreate.js
+export const seleccionarPaises= (payload)=>{
+
+return{
+type: SELECCIONAR_PAISES,
+payload
+}
+}
 export const filtradoYOrdenado = (orden, filtro, actFiltro) => ({
   type: FILTRADO_ORDENADO,
   payload: { orden, filtro, actFiltro },

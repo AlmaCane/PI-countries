@@ -9,7 +9,8 @@ import {
   GET_ALL_ACTIVITIES,
   SAVE_ACTIVITIES_COUNTRY,
   FILTER_ACT,
-  FILTRADO_ORDENADO
+  FILTRADO_ORDENADO, 
+  SELECCIONAR_PAISES
 } from "./actions";
 
 const initialstate = {
@@ -18,7 +19,7 @@ const initialstate = {
   countries: [],
   countriesCopy: [],
   idCountry: [],
-  countryActivity: [],
+  selectedCountries: [],
   filtros:[]
 };
 
@@ -32,9 +33,11 @@ function reducer(state = initialstate, action) {
       }
     case GET_ALL_ACTIVITIES:
       return {
-      ...state,
-      activities: action.payload, 
-      errors: []
+        ...state,
+        activities: action.payload.map(activity => ({
+          ...activity,
+          countries: [] // Aquí debes asignar la lista de identificadores de países asociados a cada actividad
+        }))
       }
     case CREATE_ACTIVITY:
       return {
@@ -83,7 +86,11 @@ function reducer(state = initialstate, action) {
           ...state,
           countries: sorted,
         };
-      
+      case SELECCIONAR_PAISES:
+        return{
+        ...state,
+        selectedCountries: action.payload
+        }
 
     case DELETE_ACTIVITY:
       return { ...state, activities: action.payload, errors: [] };
