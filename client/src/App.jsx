@@ -2,7 +2,6 @@ import {MemoryRouter, Route, Routes, useLocation} from "react-router-dom"
 import LandingPage from "../src/views/landingPage/LandingPage"
 import './App.css'
 import HomePage from "./views/homePage/HomePage";
-import MemoryGame from "./views/memoryGame/memoryGame";
 import Form from "./views/activityCreate/form/form"
 import ActivityView from "./views/activitiesView/ActivitiesView"
 import Detail from "./views/detail/detail"
