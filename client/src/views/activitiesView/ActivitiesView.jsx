@@ -1,14 +1,16 @@
 import { Link } from "react-router-dom";
 import "./ActivitiesView.css";
 import { useSelector, useDispatch } from "react-redux";
-import { getAllActivities } from "../../redux/actionsCreate";
+import { deleteActivity, getAllActivities } from "../../redux/actionsCreate";
 import { useEffect } from "react";
 import MenuBar from "../menuBar/MenuBar";
 
 export default function ActivityView() {
   const activities = useSelector((state) => state.activities);
   const dispatch = useDispatch();
-
+const handleDelete = (actNombre)=>{
+dispatch(deleteActivity(actNombre))
+}
   useEffect(() => {
     dispatch(getAllActivities());
     console.log(activities);
@@ -21,9 +23,11 @@ export default function ActivityView() {
         <button>Crear Actividad</button>
       </Link>
       <div className="Actcard">
+        
         {activities.length ? (
           activities.map((activity) => (
             <div className="carta" key={activity.nombre}>
+              <button onClick={()=>{handleDelete(activity.nombre)}}>X</button>
               <h2>{activity.nombre}</h2>
               <h3>Duracion: {activity.duracion} hs</h3>
               <h3>

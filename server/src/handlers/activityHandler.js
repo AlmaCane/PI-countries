@@ -1,5 +1,6 @@
 const { createActivity } = require("../controllers/createActivity");
 const { getAllActivities } = require("../controllers/getAllActivities");
+const {deleteActivity} = require ("../controllers/deleteActivitie")
 const postActivity = async (req, res) => {
   const { nombre, dificultad, duracion, estacion, countries } = req.body;
 
@@ -20,4 +21,21 @@ const getActivities = async (req, res) => {
   res.status(200).json(response);
 };
 
-module.exports = { postActivity, getActivities };
+const deleteAct = async (req, res) => {
+  const { nombre } = req.params; 
+
+  if (!nombre) {
+    return res.status(400).send("Falta el nombre de la actividad en la solicitud");
+  }
+
+  try {
+    const response = await deleteActivity(nombre);
+
+    return res.json( response);
+
+  } catch (error) {
+    return res.status(500).send(error.message);
+  }
+}
+
+module.exports = { postActivity, getActivities, deleteAct };

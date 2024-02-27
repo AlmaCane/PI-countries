@@ -44,6 +44,9 @@ export default function Detail() {
         ) : (
           <p>Loading country details...</p>
         )}
+        <div className="divact">
+
+
         <h2>Actividades:</h2>
         {
           activities?.map((activity) => (
@@ -57,7 +60,8 @@ export default function Detail() {
             </div>
           )
         )}
-        <NavLink to="/form">Añadir</NavLink>
+        <NavLink to="/form" className={"añadir"}>+</NavLink>
+        </div>
       </div>
     </div>
   );

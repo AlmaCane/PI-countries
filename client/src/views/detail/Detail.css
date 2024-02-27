@@ -1,18 +1,28 @@
 .name{
-font-size: 40px;
+font-size: 60px;
 color: white;
 display: flex;
 justify-content: center;
 align-items: center;
 margin: auto;
+padding-top: 20px;
 font-variant: small-caps;
 padding-bottom: 15px;
 
 }
+.añadir{
+text-decoration: none;
+color: black;
+text-decoration: solid;
+font-size: 30px;
+padding-bottom: 40px;
+font-weight: bolder;}
+
 .flechitadiv{
 display:grid;
 grid-template-columns: repeat(3, 1fr); /* Tres columnas de igual tamaño */
-grid-gap: 435px;
+grid-gap: 215px;
+width: 28 px;
 }
 
 .flechita{
@@ -20,6 +30,8 @@ color: aliceblue;
 text-decoration: none;
 }
 .carddetail{
+    border-radius: 20px;
+
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -42,6 +54,7 @@ text-decoration: none;
     z-index: 1;}
 
     .texto{
-    background-color: yellowgreen;
-    border-radius: 20px;
+        background-color: rgba(183, 154, 123, 0.7); 
+        border-radius: 20px;
+        width: 500px;
     }
