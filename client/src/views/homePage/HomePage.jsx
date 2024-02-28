@@ -4,7 +4,7 @@ import Cards from "../../components/cards/Cards";
 import "./home.css";
 import { useDispatch , useSelector} from "react-redux";
 import { useState } from "react";
-import { getAllCountries, getCountryByName } from "../../redux/actionsCreate";
+import { filtrado, getAllCountries, getCountryByName } from "../../redux/actionsCreate";
 import FiltradoBar from "../../components/filtradoBar/FiltradoBar";
 import FilterBar from "../filterBar/filterBar";
 import MenuBar from "../menuBar/MenuBar";
@@ -19,10 +19,9 @@ export default function HomePage() {
     dispatch(getAllCountries()); // ¿Necesitas obtener los países al cargar la página?
   }, [dispatch]);
 
-
   const [countriesToShow, setCountriesToShow] = useState([]);
   useEffect(() => {
-    setCountriesToShow([...countries].splice(0, 12));
+    setCountriesToShow([...countries].splice(0, 9));
   }, [countries]);
 
   const [page, setPage] = useState(1);
@@ -30,18 +29,18 @@ export default function HomePage() {
     if (page > 1) {
       const prevPagina = page - 1;
       setPage(prevPagina);
-      const firstCountry = (prevPagina - 1) * 12;
-      setCountriesToShow([...countries].splice(firstCountry, 12));
+      const firstCountry = (prevPagina - 1) * 9;
+      setCountriesToShow([...countries].splice(firstCountry, 9));
     }
   };
   
   const nextPage = () => {
-    const totalPages = Math.ceil(countries.length / 12);
+    const totalPages = Math.ceil(countries.length / 9);
     if (page < totalPages) {
       const nextPagina = page + 1;
       setPage(nextPagina);
-      const firstCountry = (nextPagina - 1) * 12;
-      setCountriesToShow([...countries].splice(firstCountry, 12));
+      const firstCountry = (nextPagina - 1) * 9;
+      setCountriesToShow([...countries].splice(firstCountry, 9));
     }
   };
   

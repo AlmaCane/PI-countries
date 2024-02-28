@@ -68,8 +68,8 @@ export default function FiltradoBar({ setPage }) {
         <option value="Primavera">Primavera</option>
       </select>
 
-      <button onClick={handleApplyFilters}>Aplicar</button>
-      <button onClick={mostrarTodos}>Mostrar todos</button>
+      <button className="aplicar" onClick={handleApplyFilters}>Aplicar</button>
+      <button className="aplicar" onClick={mostrarTodos}>Mostrar todos</button>
     </div>
   );
 }

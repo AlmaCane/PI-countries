@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 
 export default function SearchBar({onSearch, setPage}) {
    const [nombre, setNombre] = useState("");
-const countries = useSelector(state=> state.countriesCopy);
+const countries = useSelector(state=> state.countries);
 const coincidencias = countries.filter(country => country.nombre.includes(nombre));
 const handleChange = (event) => {
    const newNombre = event.target.value;

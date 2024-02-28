@@ -19,3 +19,17 @@ margin: auto;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
 
 }
+.aviso {
+    font-size: larger;
+    align-items: center;
+    justify-content: center;
+    padding-left: 30px;
+}
+  .avisodiv{
+    display: flex; /* Establece el contenedor como un flex container */
+    flex-direction: row; /* Alinea los elementos en filas */
+    justify-content: center; /* Centra horizontalmente los elementos a lo largo del eje principal (en este caso, el eje x) */
+    align-items: center; 
+    margin: auto, 500px;
+background-color: rgba(255, 255, 255, 0.626);
+}

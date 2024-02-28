@@ -19,41 +19,56 @@ export default function ActivityView() {
     dispatch(deleteActivity(activityName));
   };
 
-   return (
+  return (
     <div>
       <MenuBar />
-      <Link to="/form">
-        <button>Crear Actividad</button>
-      </Link>
-      
+
       <div className="Actcard">
         {activities.length ? (
-          activities.map((activity) => (
-            <div className="carta" key={activity.nombre}>
-              <button onClick={() => handleDelete(activity.nombre)}>X</button>
-      
-              <h2>{activity.nombre}</h2>
-              <h3>Duracion: {activity.duracion} hs</h3>
-              <h3>
-                Países:
-                <ul>
-          {/* Obtener los países asociados a la actividad */}
-          {selectedCountries
-            .filter((selectedCountry) => selectedCountry.activityName === activity.nombre)
-            .map((selectedCountry) =>
-              selectedCountry.countryIds.map((countryId, idx) => {
-                const country = countries.find((country) => country.id === countryId);
-                return country && <li key={idx}>{country.nombre}</li>;
-              })
-            )}
-        </ul>
-              </h3>
-              <h3>Estacion: {activity.estacion}</h3>
-              <h3>Dificultad: {activity.dificultad}</h3>
-            </div>
-          ))
+          activities.map((activity) => {
+            // Creamos un conjunto para almacenar los nombres de los países
+            const countryNames = new Set();
+
+            // Iteramos sobre los países asociados a la actividad y los agregamos al conjunto
+            selectedCountries
+              .filter(
+                (selectedCountry) =>
+                  selectedCountry.activityName === activity.nombre
+              )
+              .forEach((selectedCountry) =>
+                selectedCountry.countryIds.forEach((countryId) => {
+                  const country = countries.find(
+                    (country) => country.id === countryId
+                  );
+                  country && countryNames.add(country.nombre);
+                })
+              );
+
+            return (
+              <div className="carta" key={activity.nombre}>
+                <button onClick={() => handleDelete(activity.nombre)}>X</button>
+                <h2>{activity.nombre}</h2>
+                <h3>Duracion: {activity.duracion} hs</h3>
+                <h3>
+                  Países:
+                  <ul>
+                    {[...countryNames].map((countryName, idx) => (
+                      <li key={idx}>{countryName}</li>
+                    ))}
+                  </ul>
+                </h3>
+                <h3>Estacion: {activity.estacion}</h3>
+                <h3>Dificultad: {activity.dificultad}</h3>
+              </div>
+            );
+          })
         ) : (
-          <h3>Aun no hay actividades creadas</h3>
+          <div className="avisodiv">
+            <h3 className="aviso">Aún no hay actividades creadas</h3>
+            <Link to="/form">
+              <button>+</button>
+            </Link>
+          </div>
         )}
       </div>
     </div>

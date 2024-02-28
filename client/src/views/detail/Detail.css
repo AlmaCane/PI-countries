@@ -13,9 +13,10 @@ padding-bottom: 15px;
 .añadir{
 text-decoration: none;
 color: black;
+background-color: transparent;
 text-decoration: solid;
 font-size: 30px;
-padding-bottom: 40px;
+margin-bottom: 10px;
 font-weight: bolder;}
 
 .flechitadiv{
@@ -25,7 +26,9 @@ grid-gap: 215px;
 width: 28 px;
 }
 .letras{
-color: black;}
+color: black;
+font-size: large;
+}
 .flechita{
 color: aliceblue;
 text-decoration: none;

@@ -2,6 +2,7 @@ select {
     padding: 0.5em; /* Ajusta el relleno interno */
     font-size: 1em; /* Tamaño de fuente */
     border: 1px solid #ccc; /* Borde delgada de color gris */
+    height: fit-content;
     border-radius: 4px; /* Bordes redondeados */
     background-color: #fff; /* Color de fondo blanco */
     appearance: none; /* Elimina los estilos nativos del navegador */
@@ -24,4 +25,15 @@ select {
   select option:checked {
     background-color: #007bff; /* Color de fondo azul para opciones seleccionadas */
     color: #fff; /* Color de texto blanco para opciones seleccionadas */
+  }
+  .aplicar{
+  width: fit-content;
+  height: 38px;
+  border-radius: 6px; /* Bordes redondeados */
+
+  
+  }
+  .aplicar:hover{
+  background-color: bisque;
+  cursor: pointer;
   }
