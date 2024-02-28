@@ -1,5 +1,5 @@
 const saveInfo = require("./saveInfo");
-const PORT = 3001;
+const PORT = process.env.PORT ||3001;
 const server = require("./server");
 const { conn } = require("./src/db");
 

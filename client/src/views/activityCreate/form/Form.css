@@ -31,6 +31,10 @@ width: 96px;
 height: 50px;
 background-color: #60350d;
 }
+p{
+color: rgb(152, 6, 6);
+padding: 3px;
+}
 #name{
   padding-left: 10px;
 width:215px;

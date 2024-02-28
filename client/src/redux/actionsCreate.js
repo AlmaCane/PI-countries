@@ -11,13 +11,31 @@ import {
   SAVE_ACTIVITIES_COUNTRY,
   FILTER_ACT,
   FILTRADO_ORDENADO,
-  SELECCIONAR_PAISES
+  SELECCIONAR_PAISES,
+  PUT_ACTIVITY
   
 } from "./actions";
 
 const endpoint = "http://localhost:3001/activities";
 
 // actionsCreate.js
+
+export const putActivity= (nombre, nuevosDatos)=>{
+return async (dispatch)=>{
+try {
+  const {data}= await axios.put(`${endpoint}/${nombre}`, nuevosDatos);
+  dispatch({
+  type: PUT_ACTIVITY,
+  payload: data
+  })
+
+  
+} catch (error) {console.log(error.message);
+  
+}
+}
+
+}
 export const seleccionarPaises= (payload)=>{
 
 return{
@@ -36,10 +54,10 @@ type: SAVE_ACTIVITIES_COUNTRY,
 payload: countries
 }
 }
-export const filterActivity=(actividad)=>{
+export const filterActivity=(estacion)=>{
 return{
 type: FILTER_ACT, 
-payload:actividad
+payload:estacion
 }
 }
 

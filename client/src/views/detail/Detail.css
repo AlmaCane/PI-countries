@@ -24,7 +24,8 @@ grid-template-columns: repeat(3, 1fr); /* Tres columnas de igual tamaño */
 grid-gap: 215px;
 width: 28 px;
 }
-
+.letras{
+color: black;}
 .flechita{
 color: aliceblue;
 text-decoration: none;

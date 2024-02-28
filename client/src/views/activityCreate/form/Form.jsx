@@ -5,8 +5,12 @@ import { createActivity, getAllCountries, seleccionarPaises } from "../../../red
 import Validation from "./validation";
 import MenuBar from "../../menuBar/MenuBar";
 import "./Form.css";
+import { useLocation } from "react-router-dom";
 
 export default function Form() {
+  const location = useLocation();
+  const dispatch = useDispatch();
+
   const [activityData, setActivityData] = useState({
     nombre: "",
     dificultad: "",
@@ -14,8 +18,23 @@ export default function Form() {
     estacion: "",
     countries: [],
   });
+
   const countries = useSelector((state) => state.countries);
-  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (location.state && location.state.countryIdElegido) {
+      const selectedCountry = location.state.countryIdElegido;
+      const matchingCountries = countries.filter((country) => country.id === selectedCountry);
+      if (matchingCountries.length > 0) {
+        const selectedCountryIds = matchingCountries.map((country) => country.id);
+        setActivityData((prevActivityData) => ({
+          ...prevActivityData,
+          countries: selectedCountryIds,
+        }));
+        dispatch(seleccionarPaises({countryIds: selectedCountryIds}))
+      }
+    }
+  }, [location.state, countries]);
 
   useEffect(() => {
     dispatch(getAllCountries());
@@ -27,21 +46,17 @@ export default function Form() {
     const validationErrors = Validation({ ...activityData, [name]: value });
     setErrors(validationErrors);
   };
+
   const handleCountrySelect = (selectedOptions) => {
     const selectedCountryIds = selectedOptions.map((option) => option.value);
     setActivityData({ ...activityData, countries: selectedCountryIds });
     const info = {
       countryIds: selectedCountryIds,
-      activityName: activityData.nombre
+      activityName: activityData.nombre,
+      activityEstacion: activityData.estacion,
     };
     dispatch(seleccionarPaises(info));
   };
-  
-  useEffect(() => {
-    // Validar al cargar el componente y cada vez que cambie userData
-    const validationErrors = Validation(activityData);
-    setErrors(validationErrors);
-}, [activityData]);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -69,13 +84,9 @@ export default function Form() {
       countries: [],
     });
   };
-  const [errors, setErrors] = useState({nombre:'', 
-  dificultad:"",
-  duracion:"",
-  });
 
- 
-  // Transforma la lista de países en un formato compatible con react-select
+  const [errors, setErrors] = useState({ nombre: "", dificultad: "", duracion: "", pais: "", estacion: "" });
+
   const countryOptions = countries.map((country) => ({
     value: country.id,
     label: country.nombre,
@@ -84,9 +95,10 @@ export default function Form() {
   return (
     <div >
       <MenuBar/>
-      <h1>Crea tu actividad</h1>
+      <h1>Creá tu actividad</h1>
       <form onSubmit={handleSubmit} className="form">
         <label htmlFor="nombre">
+          {errors.nombre &&<p className="error">{errors.nombre}</p>}
         
           <input
             type="text"
@@ -96,23 +108,25 @@ export default function Form() {
             id="name"
             placeholder="Nombre de la actividad"
           />
-          {errors.nombre &&<p>{errors.nombre}</p>}
         </label>
         <label htmlFor="estacion">
+          {errors.estacion &&<p className="error">{errors.estacion}</p>}
           <select
             name="estacion"
             onChange={handleChange}
             value={activityData.estacion}
             id="estacion"
           >
-            <option value="" disabled>Estacion</option>
+            <option value="" disabled>Estación</option>
             <option value="Verano">Verano</option>
             <option value="Primavera">Primavera</option>
             <option value="Otoño">Otoño</option>
             <option value="Invierno">Invierno</option>
           </select>
+
         </label>
         <label htmlFor="dificultad">
+          {errors.dificultad &&<p className="error">{errors.dificultad}</p>}
           <select
             name="dificultad"
             onChange={handleChange}
@@ -126,8 +140,10 @@ export default function Form() {
               </option>
             ))}
           </select>
+
         </label>
         <label htmlFor="countries" >
+        {errors.pais &&<p className="error">{errors.pais}</p>}
     
           <Select
           placeholder="Seleccione los paises en donde se realiza"
@@ -137,12 +153,14 @@ export default function Form() {
             isSearchable
             onChange={handleCountrySelect}
             value={countryOptions.filter((option) =>
-              activityData.countries.includes(option.value)
+              activityData && activityData.countries?.includes(option.value)
             )}
             options={countryOptions}
           />
+
         </label>
         <label htmlFor="duracion">
+          {errors.duracion && <p className="error">{errors.duracion}</p>}
           <input
           placeholder="Duración en horas"
             type="number"
@@ -152,9 +170,12 @@ export default function Form() {
             onChange={handleChange}
             id="duracion"
           />
-          {errors.duracion && <p>{errors.duracion}</p>}
         </label>
-        <button type="submit" className="crear">Crear</button>
+<button 
+  type="submit" 
+  className="crear" >
+  Crear
+</button>
       </form>
     </div>
   );

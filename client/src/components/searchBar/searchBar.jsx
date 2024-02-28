@@ -5,13 +5,14 @@ import { useSelector } from 'react-redux';
 
 export default function SearchBar({onSearch, setPage}) {
    const [nombre, setNombre] = useState("");
-const countries = useSelector(state=> state.countries);
+const countries = useSelector(state=> state.countriesCopy);
 const coincidencias = countries.filter(country => country.nombre.includes(nombre));
-
-   const handleChange =(event)=>{
-      const newNombre = event.target.value;
-      setNombre(newNombre);
-   }
+const handleChange = (event) => {
+   const newNombre = event.target.value;
+   const nombreCapitalizado = newNombre.charAt(0).toUpperCase() + newNombre.slice(1);
+   setNombre(nombreCapitalizado);
+ }
+ 
    const limpiarBar = ()=>{
       setNombre("");
    }
